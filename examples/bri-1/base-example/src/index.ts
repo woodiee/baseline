@@ -192,7 +192,7 @@ export class ParticipantStack {
             this.baselineConfig?.nchainApiHost,
           );
 
-          const leaf = await this.baseline?.insertLeaf(msg.sender, this.contracts['shield'].address, payload.hash);
+          const leaf = await this.baseline?.insertLeaf(msg.sender, this.contracts['shield'].address, payload.__hash);
           if (leaf) {
             console.log(`inserted leaf... ${leaf}`);
           } else {
@@ -777,7 +777,9 @@ export class ParticipantStack {
 
     const subscription = await this.nats?.subscribe(baselineProtocolMessageSubject, (msg, err) => {
       this.protocolMessagesRx++;
-      this.dispatchProtocolMessage(unmarshalProtocolMessage(Buffer.from(msg.data)));
+      this.dispatchProtocolMessage(unmarshalProtocolMessage(Buffer.from(msg.data))).catch((err) => {
+        console.log('protocol message handler encountered rejected promise', err);
+      });
     });
 
     this.protocolSubscriptions.push(subscription);

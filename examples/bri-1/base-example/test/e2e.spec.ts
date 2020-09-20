@@ -103,7 +103,7 @@ describe('baseline', () => {
       null,
       'baseline workgroup',
       null,
-      'pen tuition illness early damp mule warfare blast forest aunt scatter mammal bachelor ethics solid wall keen vital arm spider angle harbor violin chuckle',
+      'corn domain lonely owner media grape hard rough arena knock uncover goddess cinnamon wing actress spring dizzy skill alter pistol funny bind rapid soap',
     );
 
     bobApp = await baselineAppFactory(
@@ -122,7 +122,7 @@ describe('baseline', () => {
       null,
       'baseline workgroup',
       null,
-      'web force manage enhance label you huge annual regret wrap violin energy away slice clown alien final add issue visit lemon bid envelope oval',
+      'forest step weird object extend boat ball unit canoe pull render monkey drink monitor behind supply brush frown alone rural minute level host clock',
     );
 
     bobApp.init();
@@ -200,14 +200,14 @@ describe('baseline', () => {
 
           describe(`invited workgroup organization: "${aliceCorpName}"`, shouldBehaveLikeAnInvitedWorkgroupOrganization.bind(this));
           describe(`workgroup organization: "${aliceCorpName}"`, shouldBehaveLikeAWorkgroupOrganization.bind(this));
+          describe(`workgroup counterparty: "${aliceCorpName}"`, shouldBehaveLikeAWorkgroupCounterpartyOrganization.bind(this));
         });
 
-        describe('counterparties', function () {
+        describe('counterparties post-onboarding', function () {
           before(async () => {
             this.ctx.app = bobApp;
           });
 
-          describe(aliceCorpName, shouldBehaveLikeAWorkgroupCounterpartyOrganization.bind(this));
           describe(bobCorpName, shouldBehaveLikeAWorkgroupCounterpartyOrganization.bind(this));
         });
       });

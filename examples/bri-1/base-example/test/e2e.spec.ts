@@ -103,6 +103,7 @@ describe('baseline', () => {
       null,
       'baseline workgroup',
       null,
+      'pen tuition illness early damp mule warfare blast forest aunt scatter mammal bachelor ethics solid wall keen vital arm spider angle harbor violin chuckle',
     );
 
     bobApp = await baselineAppFactory(
@@ -121,6 +122,7 @@ describe('baseline', () => {
       null,
       'baseline workgroup',
       null,
+      'web force manage enhance label you huge annual regret wrap violin energy away slice clown alien final add issue visit lemon bid envelope oval',
     );
 
     bobApp.init();

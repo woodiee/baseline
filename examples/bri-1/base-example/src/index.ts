@@ -287,7 +287,7 @@ export class ParticipantStack {
       address: await this.resolveOrganizationAddress(),
       authorized_bearer_token: await this.vendNatsAuthorization(),
       workflow_identifier: this.workflowIdentifier,
-    })
+    });
   }
 
   async generateProof(msg: any): Promise<any> {
@@ -537,6 +537,12 @@ export class ParticipantStack {
     return (await vault.fetchVaultKeys(vaults[0].id!, {}));
   }
 
+  async unsealVault(): Promise<any> {
+    const orgToken = (await this.createOrgToken()).token;
+    const vault = Vault.clientFactory(orgToken!, this.baselineConfig?.vaultApiScheme, this.baselineConfig?.vaultApiHost);
+    return await vault.unseal(this.baselineConfig?.vaultSealUnsealKey);
+  }
+
   async compileBaselineCircuit(): Promise<any> {
     const src = readFileSync(baselineDocumentCircuitPath).toString();
     this.baselineCircuitArtifacts = await this.zk?.compile(src, 'main');
@@ -613,7 +619,7 @@ export class ParticipantStack {
       this.contracts[type] = resp;
       this.contracts[type].params = {
         compiled_artifact: params,
-      }
+      };
     }
     return resp;
   }
@@ -752,6 +758,7 @@ export class ParticipantStack {
     });
 
     if (this.org) {
+      await this.unsealVault();
       const vaults = await this.fetchVaults();
       this.babyJubJub = await this.createVaultKey(vaults[0].id!, 'babyJubJub');
       await this.createVaultKey(vaults[0].id!, 'secp256k1');

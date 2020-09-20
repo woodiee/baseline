@@ -33,6 +33,7 @@ export const baselineAppFactory = async (
   workgroup,
   workgroupName,
   workgroupToken,
+  vaultSealUnsealKey,
 ): Promise<ParticipantStack> => {
   const natsConfig = {
     bearerToken: '',
@@ -56,6 +57,7 @@ export const baselineAppFactory = async (
       token: bearerToken,
       vaultApiScheme: 'http',
       vaultApiHost: vaultHost,
+      vaultSealUnsealKey: vaultSealUnsealKey,
       workgroup: workgroup,
       workgroupName: workgroupName,
       workgroupToken: workgroupToken,

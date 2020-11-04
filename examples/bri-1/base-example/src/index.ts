@@ -341,7 +341,9 @@ export class ParticipantStack {
     return this.natsBearerTokens[endpoint];
   }
 
-  // this will accept recipients (string[]) for multi-party use-cases
+  //// this will accept recipients (string[]) for multi-party use-cases //// MULTI-PARTY USE-CASES
+
+
   async sendProtocolMessage(
     recipient: string,
     opcode: Opcode,

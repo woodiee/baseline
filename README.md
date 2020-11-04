@@ -14,7 +14,7 @@
   <br/>
 </div>
 
-## Baseline Protocol Release `v0.1.0`
+## Baseline Protocol Release `v0.1.0` test
 
 Version 0.1 of the baseline protocol packages has been released! For some background information, check out [this section](https://docs.baseline-protocol.org/baseline-protocol/the-baseline-protocol) of our docs. There are two entrypoints where you can get involved in the codebase:
 - [`core/`](https://github.com/ethereum-oasis/baseline/tree/master/core) -- the "core" Baseline Protocol packages

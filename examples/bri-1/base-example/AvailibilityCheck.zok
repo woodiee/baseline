@@ -1,0 +1,32 @@
+// This script checks the availability for a buyer for a given time period and a given length of days on
+// .. a 30 days planning of the supplier.
+
+// Supplier's avaialbility (Sup_avail) is according MSA but is now set to 30
+// Buyer's given start day and end day of the required availability (Start_end) is limited by MSA but is now set to 14 days range 
+// Buyer's given length of days of the required availability (Length_days) is limited by MSA but is now set to 1 to 5 days
+// The result are the first days for which the supplier is available for required lenght of days. Limited by length(result)+Length_days<=planning_window 
+
+// Time is represented as follows: 01 jan = 1, 31 dec = 365. -> one year in days: [1,2,3,4,5....363,364,365]
+// Supplier's availability is represented as follows: [5,6,7,0,0,10,0,12,13,0,0,16,17,18,19]
+// A 0 means: unavailable
+// A number means: available on that day number
+// The result returns the first days of the required period in the given planning window
+
+
+def main(private field[30] Sup_avail, private field[2] Start_end, private field Length_days) -> (field[10]):
+	field start_day = Start_end[0]
+	field end_day = Start_end[1]
+	field[15] planning_window = Sup_avail[1..16] // [start_day..end_day] should be variable, now set to 1..15
+	field[10] result = [0,0,0,0,0,0,0,0,0,0]
+	field span = Length_days - 1
+	
+	for field i in 0..9 do
+	    field a = if planning_window[i] != 0 then 1 else 0 fi
+	    field b = if planning_window[i+span] - planning_window[i] == span then a * 1 else 0 fi
+	    field c = if planning_window[i+1] * planning_window[i] != 0 then b * 1 else 0 fi
+	    field d = if planning_window[i+2] * planning_window[i] != 0 then c * 1 else 0 fi
+	    field e = if planning_window[i+3] * planning_window[i] != 0 then d * 1 else 0 fi
+	    result[i] = if a+b+c+d+e >= Length_days then planning_window[i] else 0 fi
+	    endfor
+
+	return result
